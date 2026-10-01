@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Classifieds Search Form</title>
+
+<style>
+body{
+    background:#f2f2f2;
+    font-family:"Times New Roman", serif;
+}
+
+#container{
+    width:800px;
+    margin:20px auto;
+    padding:10px;
+    background:#c8f0f0;
+    border:2px solid blue;
+}
+
+h1{
+    color:red;
+}
+
+hr{
+    border:0;
+    border-top:2px solid gray;
+    margin:20px 0;
+}
+
+.section{
+    margin:20px 0;
+}
+
+.keyword{
+    width:98%;
+    height:25px;
+}
+
+.buttons{
+    margin-top:20px;
+}
+
+.buttons table{
+    width:300px;
+}
+
+.buttons td{
+    text-align:center;
+}
+
+.search{
+    color:green;
+    font-weight:bold;
+}
+
+.help{
+    color:blue;
+    font-weight:bold;
+}
+
+.cancel{
+    color:red;
+    font-weight:bold;
+}
+</style>
+
+<script>
+function doSearch(){
+    alert("Search thành công!");
+}
+
+function doHelp(){
+    window.open("help.html");
+}
+</script>
+
+</head>
+
+<body>
+
+<form>
+
+<div id="container">
+
+    <h1>Online Classifieds Search Form</h1>
+
+    <hr>
+
+    <div class="section">
+        <b>1) Search for a classified in the following sections:</b>
+
+        <table>
+            <tr>
+                <td>
+                    <input type="radio" name="section">
+                    Employment
+                </td>
+
+                <td>
+                    <input type="radio" name="section">
+                    Personal
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="radio" name="section" checked>
+                    For Sale
+                </td>
+
+                <td>
+                    <input type="radio" name="section">
+                    Miscellaneous
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="radio" name="section">
+                    Housing
+                </td>
+
+                <td>
+                    <input type="radio" name="section">
+                    All of the above
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <b>2) Search the following publications:</b>
+
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" checked>
+                    Midwest Times
+                </td>
+
+                <td>
+                    <input type="checkbox">
+                    Modern News
+                </td>
+
+                <td>
+                    <input type="checkbox">
+                    Employment Today
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" checked>
+                    Great Lakes Classifieds
+                </td>
+
+                <td>
+                    <input type="checkbox">
+                    Middleton Daily
+                </td>
+
+                <td>
+                    <input type="checkbox">
+                    Cashtown Daily News
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <b>3) From</b>
+
+        <input type="text" placeholder="mm/dd/yy">
+
+        <b>to</b>
+
+        <input type="text" placeholder="mm/dd/yy">
+    </div>
+
+    <div class="section">
+        <b>4) Enter a few keywords to describe the classified.</b>
+
+        <br><br>
+
+        <input type="text" class="keyword">
+    </div>
+
+    <div class="section">
+        <b>5) Click one of the options below:</b>
+    </div>
+
+    <div class="buttons">
+        <table>
+            <tr>
+                <td>
+                    <a href="#" onclick="doSearch();return false;">
+                        <img src="hinh/Search.gif" alt="Search">
+                    </a>
+                </td>
+
+                <td>
+                    <a href="#" onclick="doHelp();return false;">
+                        <img src="hinh/Help.gif" alt="Help">
+                    </a>
+                </td>
+
+                <td>
+                    <input type="image"
+                           src="hinh/Cancel.gif"
+                           onclick="this.form.reset();return false;">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="search">Search</td>
+                <td class="help">Help</td>
+                <td class="cancel">Cancel</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</form>
+
+</body>
+</html>
