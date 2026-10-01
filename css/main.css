@@ -34,8 +34,12 @@
 }
 
 #container li ul{
-    width:auto;
-    min-width:220px;
+    position:absolute;
+    display:none;
+    width:10em;
+    left:0;
+    top:100%;
+    z-index:999;
 }
 
 #container li:hover ul{
