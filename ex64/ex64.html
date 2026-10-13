@@ -1,0 +1,192 @@
+<html>
+    <head>
+        <title>Dynamic Table</title>
+        <style>
+            html, body {
+            margin: 0;
+            padding: 15px;
+            min-height: 100%;
+            box-sizing: border-box;
+            background: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:480px; border:1px solid black; padding:10px;">
+            <div id="clock"></div>
+
+            <br>
+
+            <p onclick="thongBao(event)"
+               oncontextmenu="thongBao(event); return false;"
+               style="cursor:pointer;">
+                Click chuột vào dòng này. Sẽ xuất hiện thông báo phím bấm của chuột
+            </p>
+
+            <table id="myTable" border="1"
+                   style="border-collapse:collapse; width:405px;">
+                <tbody>
+                    <tr onclick="chonDong(this)">
+                        <td>Thêm dòng mới ở đây</td>
+                        <td>Thêm dòng mới ở đây</td>
+                    </tr>
+
+                    <tr onclick="chonDong(this)">
+                        <td>Thêm dòng mới ở đây</td>
+                        <td>Thêm dòng mới ở đây</td>
+                    </tr>
+
+                    <tr onclick="chonDong(this)">
+                        <td>Thêm dòng mới ở đây</td>
+                        <td>Thêm dòng mới ở đây</td>
+                    </tr>
+
+                    <tr onclick="chonDong(this)">
+                        <td>Dòng 1 cột 1</td>
+                        <td>Dòng 1 cột 2</td>
+                    </tr>
+
+                    <tr onclick="chonDong(this)">
+                        <td>Dòng 2 cột 1</td>
+                        <td>Dòng 2 cột 2</td>
+                    </tr>
+
+                    <tr onclick="chonDong(this)">
+                        <td>Dòng 3 cột 1</td>
+                        <td>Dòng 3 cột 2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br><br>
+
+            <button onclick="themDong()">Thêm vào</button>
+            <button onclick="xoaDong()">Xóa</button>
+            <button onclick="chiHienDong()">Chỉ hiện dòng</button>
+            <button onclick="chiHienCot()">Chỉ hiện cột</button>
+            <button onclick="moTrangMoi()">Mở một trang mới</button>
+        </div>
+
+        <script>
+            function capNhatGio() {
+                var now = new Date();
+
+                var gio = String(now.getHours()).padStart(2, "0");
+                var phut = String(now.getMinutes()).padStart(2, "0");
+                var giay = String(now.getSeconds()).padStart(2, "0");
+
+                document.getElementById("clock").innerText =
+                    gio + ":" + phut + ":" + giay;
+            }
+
+            capNhatGio();
+            setInterval(capNhatGio, 1000);
+
+            function thongBao(event) {
+                if (event.button == 0) {
+                    alert("Bạn đã click chuột trái");
+                }
+                else if (event.button == 2) {
+                    alert("Bạn đã click chuột phải");
+                }
+            }
+
+            function chonDong(tr) {
+                if (tr.style.backgroundColor == "red") {
+                    tr.style.backgroundColor = "";
+                }
+                else {
+                    tr.style.backgroundColor = "red";
+                }
+            }
+
+            function themDong() {
+                var table = document.getElementById("myTable");
+                var tbody = table.tBodies[0];
+
+                var tr = document.createElement("tr");
+                tr.onclick = function() {
+                    chonDong(this);
+                };
+
+                var td1 = document.createElement("td");
+                td1.innerText = "Thêm dòng mới ở đây";
+
+                var td2 = document.createElement("td");
+                td2.innerText = "Thêm dòng mới ở đây";
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+
+                tbody.appendChild(tr);
+            }
+
+            function xoaDong() {
+                var table = document.getElementById("myTable");
+                var rows = table.rows;
+
+                for (var i = rows.length - 1; i >= 0; i--) {
+                    if (rows[i].style.backgroundColor == "red") {
+                        rows[i].remove();
+                    }
+                }
+            }
+
+            function chiHienDong() {
+                var table = document.getElementById("myTable");
+                var rows = table.rows;
+                var coDongChon = false;
+
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].style.backgroundColor == "red") {
+                        coDongChon = true;
+                        break;
+                    }
+                }
+
+                if (!coDongChon) {
+                    alert("Hãy chọn một dòng trước!");
+                    return;
+                }
+
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].style.backgroundColor == "red") {
+                        rows[i].style.display = "";
+                    }
+                    else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+
+            function chiHienCot() {
+                var table = document.getElementById("myTable");
+                var rows = table.rows;
+
+                var luaChon = prompt("Nhập số cột muốn hiển thị (1 hoặc 2):");
+
+                if (luaChon != "1" && luaChon != "2") {
+                    alert("Vui lòng nhập 1 hoặc 2!");
+                    return;
+                }
+
+                var cotChon = parseInt(luaChon) - 1;
+
+                for (var i = 0; i < rows.length; i++) {
+                    for (var j = 0; j < rows[i].cells.length; j++) {
+                        if (j == cotChon) {
+                            rows[i].cells[j].style.display = "";
+                        }
+                        else {
+                            rows[i].cells[j].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+            function moTrangMoi() {
+                window.open("https://tranduythanh.com", "_blank");
+            }
+        </script>
+    </body>
+</html>

@@ -2,47 +2,84 @@
 <head>
     <title>Menu</title>
     <link rel="stylesheet" href="css/main.css">
+    <script>
+        function moMenu() {
+            parent.postMessage("hienNoiDung", "*");
+        }
+    function moMenu() {
+        parent.postMessage("hienNoiDung", "*");
+    }
+
+    function veTrangChu() {
+        parent.postMessage("veTrangChu", "*");
+    }
+    </script>
 </head>
 <body>
-<div id="container">
-<ul>
-    <li><a href="CV/CV.html" target="content">HOME</a></li>
-
-    <li><a href="#">HTML</a></li>
-
-    <li>
-        <a href="#">CSS</a>
+    <div id="container">
         <ul>
-            <li><a href="ex42/ex42.html" target="content">BÀI TẬP 42</a></li>
+            <li>
+                <a href="#" onclick="veTrangChu(); return false;">HOME</a>
+            </li>
+
+            <li>
+                <a href="CV/CV.html" target="content" onclick="moMenu()">CV</a>
+            </li>
+
+            <li>
+                <a href="#" onclick="return false;">HTML</a>
+            </li>
+
+            <li>
+                <a href="#" onclick="return false;">CSS</a>
+                <ul>
+                    <li>
+                        <a href="ex42/ex42.html" target="content" onclick="moMenu()">BÀI TẬP 42</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" onclick="return false;">HTML DOM</a>
+                <ul>
+                    <li>
+                        <a href="ex63/ex63.html" target="content" onclick="moMenu()">BÀI 63</a>
+                    </li>
+                    <li>
+                        <a href="ex64/ex64.html" target="content" onclick="moMenu()">BÀI 64</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" onclick="return false;">JAVASCRIPT</a>
+            </li>
+
+            <li>
+                <a href="#" onclick="return false;">FORM</a>
+                <ul>
+                    <li>
+                        <a href="form/ClientGet.html" target="content" onclick="moMenu()">FORM ĐĂNG NHẬP</a>
+                    </li>
+                    <li>
+                        <a href="form/contact.html" target="content" onclick="moMenu()">FORM LIÊN HỆ</a>
+                    </li>
+                    <li>
+                        <a href="ex48/Register.html" target="content" onclick="moMenu()">BÀI 48</a>
+                    </li>
+                    <li>
+                        <a href="ex49/ex49.html" target="content" onclick="moMenu()">BÀI 49</a>
+                    </li>
+                    <li>
+                        <a href="ex50/ex50.html" target="content" onclick="moMenu()">BÀI 50</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" onclick="return false;">NGÔN NGỮ ASP</a>
+            </li>
         </ul>
-    </li>
-
-    <li>
-        <a href="#">JAVASCRIPT</a>
-        <ul>
-            <li><a href="#" target="content">LESSON 01</a></li>
-            <li><a href="#" target="content">LESSON 02</a></li>
-            <li><a href="#" target="content">LESSON 03</a></li>
-        </ul>
-    </li>
-
-    <li><a href="#">HTML DOM</a></li>
-    <li><a href="#">NGÔN NGỮ ASP</a></li>
-
-    <li>
-        <a href="#">FORM</a>
-        <ul>
-            <li><a href="form/ClientGet.html" target="content">FORM ĐĂNG NHẬP</a></li>
-            <li><a href="form/contact.html" target="content">FORM LIÊN HỆ</a></li>
-            <li><a href="ex48/Register.html" target="content">BÀI 48</a></li>
-            <li><a href="ex49/ex49.html" target="content">BÀI 49</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="ex50/ex50.html" target="content">BÀI 50</a>
-    </li>
-</ul>
-</div>
-
+    </div>
 </body>
 </html>

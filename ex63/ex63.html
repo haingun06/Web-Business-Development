@@ -1,0 +1,227 @@
+<html>
+    <head>
+        <title>Bài 63</title>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 15px;
+                min-height: 100%;
+                box-sizing: border-box;
+                background: white;
+            }
+
+            body {
+                font-family: "Times New Roman";
+                font-size: 18px;
+            }
+
+            th {
+                background-color: blue;
+                color: white;
+            }
+
+            table {
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+
+            th, td {
+                border: 2px solid gray;
+                padding: 2px;
+            }
+
+            .xanh { background-color: blue; }
+            .do { background-color: red; }
+            .vang { background-color: yellow; }
+            .xanhla { background-color: green; }
+            .tim { background-color: violet; }
+
+            .checkbox-group { margin-left: 20px;}
+        </style>
+
+        <script>
+            function loadDate() {
+                var ngay = document.getElementById("ngay");
+                var thang = document.getElementById("thang");
+                var nam = document.getElementById("nam");
+
+                for (var i = 1; i <= 31; i++) {
+                    var op = document.createElement("option");
+                    op.value = i;
+                    op.text = (i < 10 ? "0" : "") + i;
+                    ngay.add(op);
+                }
+
+                var j = 1;
+                while (j <= 12) {
+                    var op = document.createElement("option");
+                    op.value = j;
+                    op.text = j;
+                    thang.add(op);
+                    j++;
+                }
+
+                var y = 1970;
+                do {
+                    var op = document.createElement("option");
+                    op.value = y;
+                    op.text = y;
+                    nam.add(op);
+                    y++;
+                } while (y <= 2026);
+            }
+
+            function dangKy() {
+                var ten = document.getElementById("ten").value.trim();
+                var email = document.getElementById("email").value.trim();
+
+                if (ten == "") {
+                    alert("Vui lòng nhập tên!");
+                    document.getElementById("ten").focus();
+                    return;
+                }
+
+                var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!regex.test(email)) {
+                    alert("Email không hợp lệ!");
+                    document.getElementById("email").focus();
+                    return;
+                }
+
+                var gioiTinh =
+                    document.querySelector('input[name="gioitinh"]:checked').value;
+
+                var ngay = document.getElementById("ngay").value;
+                var thang = document.getElementById("thang").value;
+                var nam = document.getElementById("nam").value;
+
+                var soThich = [];
+                var hobbies = document.getElementsByName("sothich");
+
+                for (var i = 0; i < hobbies.length; i++) {
+                    if (hobbies[i].checked) {
+                        soThich.push(hobbies[i].value);
+                    }
+                }
+
+                var mau = document.querySelector('input[name="mau"]:checked').value;
+
+                var tbody = document.getElementById("dsThanhVien");
+                var tr = document.createElement("tr");
+
+                var data = [
+                    ten,
+                    email,
+                    gioiTinh,
+                    ngay + "/" + thang + "/" + nam,
+                    soThich.join(", "),
+                    mau
+                ];
+
+                for (var i = 0; i < data.length; i++) {
+                    var td = document.createElement("td");
+                    td.textContent = data[i];
+
+                    if (i == 5) {
+                        td.style.backgroundColor = mau;
+                    }
+
+                    tr.appendChild(td);
+                }
+
+                tr.onmouseover = function () {
+                    this.style.backgroundColor = "yellow";
+                };
+
+                tr.onmouseout = function () {
+                    this.style.backgroundColor = "white";
+                };
+
+                tbody.appendChild(tr);
+            }
+
+            function tiep() {
+                document.getElementById("formDK").reset();
+                document.getElementById("ten").focus();
+            }
+
+            window.onload = function () {
+                loadDate();
+                document.getElementById("ten").focus();
+            };
+        </script>
+    </head>
+
+    <body>
+        <h1>Đăng ký thành viên</h1>
+        <hr>
+
+        <form id="formDK" onsubmit="return false;">
+            Tên(*) &nbsp;
+            <input type="text" id="ten">
+            <br>
+
+            Ngày sinh(*) &nbsp;
+            Ngày: <select id="ngay"></select>
+            Tháng: <select id="thang"></select>
+            Năm: <select id="nam"></select>
+            <br>
+
+            Giới tính(*) &nbsp;
+            <input type="radio" name="gioitinh" value="Nam" checked>Nam
+            <input type="radio" name="gioitinh" value="Nữ">Nữ
+            <br>
+
+            Email(*) &nbsp;
+            <input type="text" id="email">
+            <br><br>
+
+            Sở thích của bạn:
+            <div class="checkbox-group">
+                <input type="checkbox" name="sothich" value="Mua sắm" checked>Mua sắm<br>
+                <input type="checkbox" name="sothich" value="Du lịch" checked>Du lịch<br>
+                <input type="checkbox" name="sothich" value="Tán gẫu" checked>Tán gẫu<br>
+                <input type="checkbox" name="sothich" value="Đọc sách" checked>Đọc sách<br>
+                <input type="checkbox" name="sothich" value="Nghe nhạc" checked>Nghe nhạc<br>
+            </div>
+
+            Màu yêu thích của bạn:
+            <div class="checkbox-group">
+                <input type="radio" name="mau" value="blue" checked>
+                <span class="xanh">Màu xanh da trời</span><br>
+
+                <input type="radio" name="mau" value="red">
+                <span class="do">Màu đỏ</span><br>
+
+                <input type="radio" name="mau" value="yellow">
+                <span class="vang">Màu vàng</span><br>
+
+                <input type="radio" name="mau" value="green">
+                <span class="xanhla">Màu xanh xanh lá cây</span><br>
+
+                <input type="radio" name="mau" value="violet">
+                <span class="tim">Màu xanh tím</span><br><br>
+            </div>
+
+            <button type="button" onclick="dangKy()">Đăng ký</button>
+            <button type="button" onclick="tiep()">Tiếp</button>
+        </form>
+
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Giới tính</th>
+                    <th>Năm sinh</th>
+                    <th>Sở thích</th>
+                    <th>Màu yêu thích</th>
+                </tr>
+            </thead>
+
+            <tbody id="dsThanhVien">
+            </tbody>
+        </table>
+    </body>
+</html>
